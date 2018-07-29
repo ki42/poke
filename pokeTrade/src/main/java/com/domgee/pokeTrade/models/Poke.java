@@ -14,7 +14,7 @@ public class Poke {
     private List<User> user = new ArrayList<>();
 
     @NotNull
-    /*@ManyToOne        Many poke to only one Poke in the poke name table.   */
+    @ManyToOne       /* Many poke to only one Poke in the poke name table.   */
     @Size(min=1, max=5)  /* this needs to refer to the ID of the foreign table of poke names */
     private int nameId;
 
