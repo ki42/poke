@@ -7,8 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = "")
-public class Input {
+public class UserInfo {
 
     @Autowired
     UserDao userDao;

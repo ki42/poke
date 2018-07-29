@@ -1,9 +1,6 @@
 package com.domgee.pokeTrade.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -21,18 +18,21 @@ public class User {
     private String userName;
 
     @NotNull
-    @Size(min=3, max=15)
-    private String password;
+    @Size(min=3, max=15)    /* TODO how do I hash this? */
+    private String hashPassword;
+
+    @NotNull
+    private int salt;
 
     @NotNull
     @Size(min=1, max=2)
-    private Integer playerLevel;
+    private int playerLevel;
 
     @NotNull
     @Size(min=5, max=5)
-    private Integer zipCode;
+    private int zipCode;
 
-    private Integer miles;
+    private int miles;
 
     @Size(min=3, max=25)
     private String email;
@@ -40,13 +40,14 @@ public class User {
     private String timeSpan;
 
     @ManyToMany
-    private List<Have> poke = new ArrayList<>();
+    private List<Poke> poke = new ArrayList<>();
 
     public User(){}
 
-    public User(String userName, String password, Integer playerLevel, Integer zipCode, Integer miles, String email, String timeSpan) {
+    public User(String userName, String hashPassword, int salt, int playerLevel, int zipCode, int miles, String email, String timeSpan) {
         this.userName = userName;
-        this.password = password;
+        this.hashPassword = hashPassword;
+        this.salt = salt;
         this.playerLevel = playerLevel;
         this.zipCode = zipCode;
         this.miles = miles;
